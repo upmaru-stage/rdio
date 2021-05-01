@@ -10,7 +10,13 @@ defmodule Rdio.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: dialyzer(),
+      releases: [
+        rdio: [
+          include_executables_for: [:unix]
+        ]
+      ]
     ]
   end
 
@@ -27,6 +33,13 @@ defmodule Rdio.MixProject do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp dialyzer do
+    [
+      plt_core_path: "priv/plts",
+      plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+    ]
+  end
 
   # Specifies your project dependencies.
   #
