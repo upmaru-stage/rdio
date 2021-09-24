@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: alpine:3.11
+      image: alpine:3.12
 
     steps:
       - name: Cancel Previous Runs
@@ -30,10 +30,7 @@ jobs:
       - name: Install OS Deps
         run: | 
           apk update && apk add --update tar build-base libsodium-dev \
-            elixir erlang-crypto erlang-syntax-tools erlang-hipe \
-            erlang-parsetools erlang-runtime-tools \
-            erlang-observer erlang-tools erlang-xmerl \
-            erlang-eunit nodejs npm
+            elixir nodejs npm
 
       - name: Retrieve Cached Dependencies
         uses: actions/cache@v2
@@ -61,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: alpine:3.11
+      image: alpine:3.12
 
     steps:
       - name: Cancel Previous Runs
@@ -77,10 +74,7 @@ jobs:
       - name: Install Dependencies
         run: |
           apk update && apk add --update tar build-base libsodium-dev\
-            elixir erlang-crypto erlang-syntax-tools erlang-hipe \
-            erlang-parsetools erlang-runtime-tools \
-            erlang-observer erlang-tools erlang-xmerl \
-            erlang-eunit nodejs npm
+            elixir nodejs npm
 
           mix local.rebar --force
           mix local.hex --force
@@ -108,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: alpine:3.11
+      image: alpine:3.12
 
     services:
       postgres:
@@ -136,10 +130,7 @@ jobs:
       - name: Install Dependencies
         run: |
           apk update && apk add --update tar build-base libsodium-dev \
-            elixir erlang-crypto erlang-syntax-tools erlang-hipe \
-            erlang-parsetools erlang-runtime-tools \
-            erlang-observer erlang-tools erlang-xmerl \
-            erlang-eunit nodejs npm
+            elixir nodejs npm
 
           mix local.rebar --force
           mix local.hex --force

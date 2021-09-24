@@ -1,15 +1,6 @@
 dependencies:
   build:
     - elixir
-    - erlang-crypto
-    - erlang-syntax-tools
-    - erlang-hipe
-    - erlang-parsetools
-    - erlang-runtime-tools
-    - erlang-observer
-    - erlang-tools
-    - erlang-xmerl
-    - erlang-eunit
     - libsodium-dev
     - nodejs
     - npm
@@ -20,6 +11,8 @@ dependencies:
     - ca-certificates
     - s6
     - rdio-openrc
+
+stack: alpine/3.12
 
 build:
   destination: '_build/prod/rel/rdio'
