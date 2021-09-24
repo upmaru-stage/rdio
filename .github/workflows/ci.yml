@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: alpine:3.12
+      image: alpine:3.13
 
     steps:
       - name: Cancel Previous Runs
@@ -40,7 +40,7 @@ jobs:
             deps
             _build
             priv/plts
-          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v3
+          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v4
 
       - name: Install Dependencies
         if: steps.mix-cache.outputs.cache-hit != 'true'
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: alpine:3.12
+      image: alpine:3.13
 
     steps:
       - name: Cancel Previous Runs
@@ -88,7 +88,7 @@ jobs:
             _build
             priv/plts
 
-          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v3
+          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v4
 
       - name: Check Code Format
         run: mix format --check-formatted
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: alpine:3.12
+      image: alpine:3.13
 
     services:
       postgres:
@@ -143,7 +143,8 @@ jobs:
             deps
             _build
             priv/plts
-          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v3
+            
+          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v4
 
       - name: Run Tests
         run: mix test --trace --slowest 10

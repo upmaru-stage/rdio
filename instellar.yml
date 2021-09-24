@@ -12,7 +12,7 @@ dependencies:
     - s6
     - rdio-openrc
 
-stack: alpine/3.12
+stack: alpine/3.13
 
 build:
   destination: '_build/prod/rel/rdio'
