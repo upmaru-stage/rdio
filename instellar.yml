@@ -1,0 +1,56 @@
+dependencies:
+  build:
+    - elixir
+    - libsodium-dev
+    - nodejs
+    - npm
+  runtime:
+    - bash
+    - curl
+    - jq
+    - ca-certificates
+    - s6
+    - rdio-openrc
+
+stack: alpine/3.17
+
+build:
+  destination: '_build/prod/rel/rdio'
+  command: |
+    export MIX_ENV=prod
+
+    mix local.hex --force
+    mix local.rebar --force
+    mix do deps.get --only prod
+
+    mix assets.deploy
+
+    mix release
+
+run: 
+  name: rdio
+  start: 
+    call: 'start'
+  stop:
+    call: 'stop'
+  command:
+    call: 'eval'
+    variations:
+      migrate: Rdio.Release.Tasks.migrate
+
+hook:
+  post-install: |
+    rc-update add rdio
+
+  pre-upgrade: |
+    rc-service rdio stop
+
+  post-upgrade: |
+    rc-service rdio migrate
+    rc-service rdio start
+
+  post-deinstall: |
+    rc-service rdio stop
+    rc-update del rdio
+
+
