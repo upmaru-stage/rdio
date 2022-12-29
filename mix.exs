@@ -9,7 +9,13 @@ defmodule Rdio.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: dialyzer(),
+      releases: [
+        rdio: [
+          include_executables_for: [:unix]
+        ]
+      ]
     ]
   end
 
@@ -20,6 +26,13 @@ defmodule Rdio.MixProject do
     [
       mod: {Rdio.Application, []},
       extra_applications: [:logger, :runtime_tools]
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_core_path: "priv/plts",
+      plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
     ]
   end
 
