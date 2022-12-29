@@ -40,7 +40,7 @@ jobs:
             deps
             _build
             priv/plts
-          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}-v7
+          key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}
 
       - name: Install Dependencies
         if: steps.mix-cache.outputs.cache-hit != 'true'
