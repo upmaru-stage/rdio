@@ -1,6 +1,7 @@
 dependencies:
   build:
     - elixir
+    - npm
   runtime:
     - bash
     - curl
@@ -19,6 +20,8 @@ build:
     mix local.hex --force
     mix local.rebar --force
     mix do deps.get --only prod
+
+    npm --prefix ./assets install ./assets
 
     mix assets.deploy
 
