@@ -41,6 +41,7 @@ run:
 hook:
   post-install: |
     rc-update add rdio
+    rc-service rdio migrate
 
   pre-upgrade: |
     rc-service rdio stop
