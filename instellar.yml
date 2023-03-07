@@ -53,5 +53,3 @@ hook:
   post-deinstall: |
     rc-service rdio stop
     rc-update del rdio
-
-
