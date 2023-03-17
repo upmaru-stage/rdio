@@ -10,6 +10,8 @@ import Config
 config :rdio,
   ecto_repos: [Rdio.Repo]
 
+config :rdio, Rdio.Repo, prepare: :unnamed
+
 # Configures the endpoint
 config :rdio, RdioWeb.Endpoint,
   url: [host: "localhost"],
