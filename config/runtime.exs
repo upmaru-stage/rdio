@@ -32,8 +32,6 @@ if config_env() == :prod do
 
   cacertfile_path = System.get_env("DATABASE_CERT_PATH") || "/etc/ssl/cert.pem"
 
-  maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
-
   config :rdio, Rdio.Repo,
     # ssl: true,
     url: database_url,
