@@ -28,13 +28,24 @@ if config_env() == :prod do
       For example: ecto://USER:PASS@HOST/DATABASE
       """
 
+  %URI{host: db_host} = URI.parse(database_url)
+
+  cacertfile_path = System.get_env("DATABASE_CERT_PATH") || "/etc/ssl/cert.pem"
+
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
   config :rdio, Rdio.Repo,
     # ssl: true,
     url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
+    queue_target: 10_000,
+    ssl_opts: [
+      verify: :verify_peer,
+      cacertfile: cacertfile_path,
+      server_name_indication: to_charlist(db_host),
+      customize_hostname_check: [
+        match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+      ]
+    ]
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
