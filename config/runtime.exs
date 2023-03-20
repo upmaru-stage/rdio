@@ -49,14 +49,15 @@ if config_env() == :prod do
     # ssl: true,
     url: database_url,
     queue_target: 10_000,
-    ssl_opts: [
-      verify: :verify_peer,
-      server_name_indication: to_charlist(db_host),
-      customize_hostname_check: [
-        match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+    ssl_opts:
+      [
+        verify: :verify_peer,
+        server_name_indication: to_charlist(db_host),
+        customize_hostname_check: [
+          match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
+        ]
       ]
-    ]
-    |> Keyword.merge(cacert_options)
+      |> Keyword.merge(cacert_options)
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
