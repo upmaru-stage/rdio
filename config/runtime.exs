@@ -30,7 +30,20 @@ if config_env() == :prod do
 
   %URI{host: db_host} = URI.parse(database_url)
 
-  cacertfile_path = System.get_env("DATABASE_CERT_PATH") || "/etc/ssl/cert.pem"
+  cacert_pem = System.get_env("DATABASE_CERT_PEM")
+
+  cacert_options =
+    if cacert_pem do
+      [
+        cacerts: [
+          cacert_pem
+          |> X509.Certificate.from_pem!()
+          |> X509.Certificate.to_der()
+        ]
+      ]
+    else
+      [cacertfile: System.get_env("DATABASE_CERT_PATH") || "/etc/ssl/cert.pem"]
+    end
 
   config :rdio, Rdio.Repo,
     # ssl: true,
@@ -38,12 +51,12 @@ if config_env() == :prod do
     queue_target: 10_000,
     ssl_opts: [
       verify: :verify_peer,
-      cacertfile: cacertfile_path,
       server_name_indication: to_charlist(db_host),
       customize_hostname_check: [
         match_fun: :public_key.pkix_verify_hostname_match_fun(:https)
       ]
     ]
+    |> Keyword.merge(cacert_options)
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you

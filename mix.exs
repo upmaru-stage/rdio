@@ -62,6 +62,7 @@ defmodule Rdio.MixProject do
       {:finch, "~> 0.14"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+      {:x509, "~> 0.8.4"},
       {:gettext, "~> 0.20"},
       {:castore, "~> 0.1"},
       {:jason, "~> 1.2"},
