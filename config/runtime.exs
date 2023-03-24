@@ -76,6 +76,11 @@ if config_env() == :prod do
 
   config :rdio, RdioWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
+    force_ssl: [host: nil],
+    check_origin: [
+      "https://rdio.artello.network",
+      "https://staging.rdio.club"
+    ],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
