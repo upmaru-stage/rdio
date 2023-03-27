@@ -78,8 +78,7 @@ if config_env() == :prod do
     url: [host: host, port: 443, scheme: "https"],
     force_ssl: [host: nil],
     check_origin: [
-      "https://rdio.artello.network",
-      "https://staging.rdio.club"
+      "https://*.rdio.club"
     ],
     http: [
       # Enable IPv6 and bind on all interfaces.
