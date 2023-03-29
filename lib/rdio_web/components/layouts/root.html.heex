@@ -19,26 +19,32 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <ul>
-      <%= if @current_user do %>
-        <li>
-          <%= @current_user.email %>
-        </li>
-        <li>
-          <.link href={~p"/users/settings"}>Settings</.link>
-        </li>
-        <li>
-          <.link href={~p"/users/log_out"} method="delete">Log out</.link>
-        </li>
-      <% else %>
-        <li>
-          <.link href={~p"/users/register"}>Register</.link>
-        </li>
-        <li>
-          <.link href={~p"/users/log_in"}>Log in</.link>
-        </li>
-      <% end %>
-    </ul>
+    <nav class="mx-auto items-center justify-between p-6 lg:px-8 bg-black">
+      <div class="hidden lg:flex lg:gap-x-12">
+        <%= if @current_user do %>
+          <span class="text-sm font-semibold leading-6 text-white">
+            <%= @current_user.email %>
+          </span>
+          <.link class="text-sm font-semibold leading-6 text-white" href={~p"/users/settings"}>
+            Settings
+          </.link>
+          <.link
+            class="text-sm font-semibold leading-6 text-white"
+            href={~p"/users/log_out"}
+            method="delete"
+          >
+            Log out
+          </.link>
+        <% else %>
+          <.link class="text-sm font-semibold leading-6 text-white" href={~p"/users/register"}>
+            Register
+          </.link>
+          <.link class="text-sm font-semibold leading-6 text-white" href={~p"/users/log_in"}>
+            Log in
+          </.link>
+        <% end %>
+      </div>
+    </nav>
     <%= @inner_content %>
   </body>
 </html>
