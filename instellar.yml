@@ -5,9 +5,13 @@ dependencies:
   runtime:
     - bash
     - curl
-    - jq
-    - ca-certificates
     - s6
+    - jq
+    - openssl 
+    - libgcc 
+    - libstdc++ 
+    - ncurses-libs
+    - ca-certificates
     - rdio-openrc
 
 stack: alpine/3.17
