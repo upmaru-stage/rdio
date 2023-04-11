@@ -32,7 +32,7 @@ run:
   name: rdio
   commands:
   - name: migrate
-    binary: monty
+    binary: rdio
     call: 'eval Rdio.Release.Tasks.migrate'
   services:
   - name: web
