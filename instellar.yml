@@ -13,7 +13,8 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destination: '_build/prod/rel/rdio'
+  destinations: 
+    - '_build/prod/rel/rdio'
   command: |
     export MIX_ENV=prod
 
@@ -29,14 +30,17 @@ build:
 
 run: 
   name: rdio
-  start: 
-    call: 'start'
-  stop:
-    call: 'stop'
-  command:
-    call: 'eval'
-    variations:
-      migrate: Rdio.Release.Tasks.migrate
+  commands:
+  - name: migrate
+    binary: monty
+    call: 'eval Rdio.Release.Tasks.migrate'
+  services:
+  - name: web
+    binary: rdio
+    start:
+      call: start
+    stop:
+      call: stop
 
 hook:
   post-install: |
