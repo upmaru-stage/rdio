@@ -7,7 +7,10 @@ defmodule Rdio.Application do
 
   @impl true
   def start(_type, _args) do
+    topologies = Application.get_env(:libcluster, :topologies) || []
+
     children = [
+      {Cluster.Supervisor, [topologies, [name: Rdio.ClusterSupervisor]]},
       # Start the Telemetry supervisor
       RdioWeb.Telemetry,
       # Start the Ecto repository
