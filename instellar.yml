@@ -44,8 +44,6 @@ run:
     binary: rdio
     start:
       call: start
-    stop:
-      call: stop
 
 hook:
   post-install: |
