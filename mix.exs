@@ -64,6 +64,7 @@ defmodule Rdio.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:x509, "~> 0.8.4"},
       {:gettext, "~> 0.20"},
+      {:libcluster_uplink, "~> 0.1"},
       {:castore, "~> 0.1"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
