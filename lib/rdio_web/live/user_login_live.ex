@@ -21,7 +21,6 @@ defmodule RdioWeb.UserLoginLive do
         for={:user}
         action={~p"/users/log_in"}
         as={:user}
-        phx-update="ignore"
       >
         <.input field={{f, :email}} type="email" label="Email" required />
         <.input field={{f, :password}} type="password" label="Password" required />
