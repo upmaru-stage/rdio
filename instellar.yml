@@ -8,10 +8,6 @@ dependencies:
     - curl
     - s6
     - jq
-    - openssl 
-    - libgcc 
-    - libstdc++ 
-    - ncurses-libs
     - ca-certificates
     - rdio-openrc
 
@@ -70,9 +66,9 @@ hook:
 
 
 kits:
-  - description: rdio web service
+  - description: web service
     main: true
-    name: rdio-web
+    name: web
     ports:
       - main: true
         name: web
