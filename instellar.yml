@@ -75,6 +75,7 @@ kits:
         target: 4000
     variables:
       - driver: database/postgresql
+        default_value: "ecto:///"
         key: DATABASE_URL
       - default_value: "true"
         key: PHX_SERVER

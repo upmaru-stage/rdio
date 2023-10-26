@@ -45,9 +45,10 @@ if config_env() == :prod do
     end
 
   config :rdio, Rdio.Repo,
-    # ssl: true,
+    ssl: true,
     url: database_url,
     queue_target: 10_000,
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
     ssl_opts:
       [
         verify: :verify_peer,
