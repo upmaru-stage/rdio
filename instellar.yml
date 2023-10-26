@@ -39,6 +39,13 @@ run:
   - name: migrate
     binary: rdio
     call: 'eval Rdio.Release.Tasks.migrate'
+  - name: console
+    binary: rdio
+    call: remote
+  - name: logs
+    path: /usr/bin
+    binary: tail
+    call: -f -n 100 /var/log/rdio/current
   services:
   - name: web
     binary: rdio
