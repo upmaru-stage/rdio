@@ -76,7 +76,7 @@ kits:
     variables:
       - driver: database/postgresql
         default_value: "ecto:///"
-        key: DATABASE_URL
+        key: DATABASE
       - default_value: "true"
         key: PHX_SERVER
       - driver: generic/secret
