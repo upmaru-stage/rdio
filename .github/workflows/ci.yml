@@ -30,7 +30,7 @@ jobs:
       - name: Install OS Deps
         run: |
           apk update && apk add --update tar build-base libsodium-dev \
-            elixir nodejs npm
+            elixir nodejs npm erlang-dev
 
       - name: Retrieve Cached Dependencies
         uses: actions/cache@v4
