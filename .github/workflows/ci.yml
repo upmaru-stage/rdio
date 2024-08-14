@@ -32,6 +32,8 @@ jobs:
           apk update && apk add --update tar build-base libsodium-dev \
             elixir nodejs npm erlang-dev linux-headers
 
+          echo "#include <unistd.h>" > /usr/include/sys/unistd.h
+
       - name: Retrieve Cached Dependencies
         uses: actions/cache@v4
         id: mix-cache
@@ -75,6 +77,8 @@ jobs:
         run: |
           apk update && apk add --update tar build-base libsodium-dev\
             elixir nodejs npm erlang-dev linux-headers
+
+          echo "#include <unistd.h>" > /usr/include/sys/unistd.h
 
           mix local.rebar --force
           mix local.hex --force
@@ -131,6 +135,8 @@ jobs:
         run: |
           apk update && apk add --update tar build-base libsodium-dev \
             elixir nodejs npm erlang-dev linux-headers
+
+          echo "#include <unistd.h>" > /usr/include/sys/unistd.h
 
           mix local.rebar --force
           mix local.hex --force
