@@ -68,6 +68,7 @@ defmodule Rdio.MixProject do
       {:castore, "~> 0.1"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:picosat_elixir, "~> 0.2.0"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
