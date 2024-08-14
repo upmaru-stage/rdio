@@ -1,12 +1,12 @@
-name: 'CI'
+name: "CI"
 
 on:
   push:
     branches:
       - master
       - develop
-      - 'feature/**'
-      - 'hotfix/**'
+      - "feature/**"
+      - "hotfix/**"
 
 jobs:
   deps:
@@ -74,7 +74,7 @@ jobs:
       - name: Install Dependencies
         run: |
           apk update && apk add --update tar build-base libsodium-dev\
-            elixir nodejs npm
+            elixir nodejs npm erlang-dev
 
           mix local.rebar --force
           mix local.hex --force
@@ -130,7 +130,7 @@ jobs:
       - name: Install Dependencies
         run: |
           apk update && apk add --update tar build-base libsodium-dev \
-            elixir nodejs npm
+            elixir nodejs npm erlang-dev
 
           mix local.rebar --force
           mix local.hex --force
@@ -143,7 +143,7 @@ jobs:
             deps
             _build
             priv/plts
-            
+
           key: ${{ runner.os }}-rdio-staging-${{ hashFiles('mix.lock') }}
 
       - name: Run Tests
