@@ -30,7 +30,7 @@ jobs:
       - name: Install OS Deps
         run: |
           apk update && apk add --update tar build-base libsodium-dev \
-            elixir nodejs npm erlang-dev linux-headers
+            elixir nodejs npm erlang-dev musl-dev
 
           echo "#include <unistd.h>" > /usr/include/sys/unistd.h
 
@@ -76,7 +76,7 @@ jobs:
       - name: Install Dependencies
         run: |
           apk update && apk add --update tar build-base libsodium-dev\
-            elixir nodejs npm erlang-dev linux-headers
+            elixir nodejs npm erlang-dev musl-dev
 
           echo "#include <unistd.h>" > /usr/include/sys/unistd.h
 
@@ -134,7 +134,7 @@ jobs:
       - name: Install Dependencies
         run: |
           apk update && apk add --update tar build-base libsodium-dev \
-            elixir nodejs npm erlang-dev linux-headers
+            elixir nodejs npm erlang-dev musl-dev
 
           echo "#include <unistd.h>" > /usr/include/sys/unistd.h
 
