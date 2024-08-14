@@ -2,7 +2,6 @@ dependencies:
   trace: true
   build:
     - elixir
-    - musl-dev
     - npm
   runtime:
     - bash
@@ -18,8 +17,6 @@ build:
   destinations:
     - "_build/prod/rel/rdio/*"
   command: |
-    echo "#include <unistd.h>" > /usr/include/sys/unistd.h
-
     export MIX_ENV=prod
 
     mix local.hex --force
