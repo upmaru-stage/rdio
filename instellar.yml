@@ -2,6 +2,7 @@ dependencies:
   trace: true
   build:
     - elixir
+    - musl-dev
     - npm
   runtime:
     - bash
@@ -14,9 +15,11 @@ dependencies:
 stack: alpine/3.17
 
 build:
-  destinations: 
-    - '_build/prod/rel/rdio/*'
+  destinations:
+    - "_build/prod/rel/rdio/*"
   command: |
+    echo "#include <unistd.h>" > /usr/include/sys/unistd.h
+
     export MIX_ENV=prod
 
     mix local.hex --force
@@ -29,24 +32,24 @@ build:
 
     mix release
 
-run: 
+run:
   name: rdio
   commands:
-  - name: migrate
-    binary: rdio
-    call: 'eval Rdio.Release.Tasks.migrate'
-  - name: console
-    binary: rdio
-    call: remote
-  - name: logs
-    path: /usr/bin
-    binary: tail
-    call: -f -n 100 /var/log/rdio/current
+    - name: migrate
+      binary: rdio
+      call: "eval Rdio.Release.Tasks.migrate"
+    - name: console
+      binary: rdio
+      call: remote
+    - name: logs
+      path: /usr/bin
+      binary: tail
+      call: -f -n 100 /var/log/rdio/current
   services:
-  - name: web
-    binary: rdio
-    start:
-      call: start
+    - name: web
+      binary: rdio
+      start:
+        call: start
 
 hook:
   post-install: |
@@ -63,7 +66,6 @@ hook:
   post-deinstall: |
     rc-service rdio stop
     rc-update del rdio
-
 
 kits:
   - description: web service
